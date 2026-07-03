@@ -2,8 +2,9 @@
 
     <h2>Students</h2>
 
-    <ul>
-        <li *ngFor="let student of students">
+    <div *ngIf="students.length > 0; else noStudents">
+        <ul>
+            <li *ngFor="let student of students">
 
             <span>
                 {{student.studentId}} -
@@ -27,3 +28,9 @@
     </ul>
 
 </div>
+
+<ng-template #noStudents>
+  <p class="empty-message">
+    No students available.
+  </p>
+</ng-template>

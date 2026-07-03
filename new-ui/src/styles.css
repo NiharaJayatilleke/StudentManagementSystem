@@ -423,3 +423,10 @@ input[readonly] {
     font-size: 12px;
     margin-top: 5px;
 }
+
+.empty-message {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    margin: 20px 0;
+}

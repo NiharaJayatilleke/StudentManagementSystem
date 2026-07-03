@@ -2,11 +2,13 @@
 
     <h2>Assign Subject</h2>
 
-    <select [(ngModel)]="studentId">
+    <select [(ngModel)]="studentId" [disabled]="students.length === 0">
 
-        <option [ngValue]="null" disabled>
-            Select a Student
-        </option>
+    <option [ngValue]="null" disabled>
+        {{ students.length === 0
+            ? 'No students available'
+            : 'Select a Student' }}
+    </option>
 
         <option *ngFor="let s of students" [ngValue]="s.id">
             {{s.name}}
@@ -14,10 +16,12 @@
 
     </select>
 
-    <select [(ngModel)]="subjectId">
+    <select [(ngModel)]="subjectId" [disabled]="subjects.length === 0">
 
         <option [ngValue]="null" disabled>
-            Select a Subject
+            {{ subjects.length === 0
+                ? 'No subjects available'
+                : 'Select a Subject' }}
         </option>
 
         <option *ngFor="let s of subjects" [ngValue]="s.id">
@@ -46,8 +50,8 @@
 
     <hr>
 
+    <div *ngIf="enrollments.length == 0; else noEnrollments">
     <ul>
-
         <li *ngFor="let enrollment of enrollments">
 
             <span>
@@ -61,7 +65,13 @@
             </button>
 
         </li>
-
     </ul>
+    </div>
 
 </div>
+
+<ng-template #noEnrollments>
+  <p class="empty-message">
+    No enrollments available.
+  </p>
+</ng-template>
