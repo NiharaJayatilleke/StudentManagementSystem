@@ -1,6 +1,8 @@
 <div class="container">
     <h2>Subjects</h2>
 
+    <div *ngIf="subjects.length > 0; else noSubjects">
+
     <div *ngIf="isLoading">Loading subjects...</div>
 
     <ul *ngIf="!isLoading && subjects.length > 0">
@@ -56,4 +58,11 @@
       Next
     </button>
   </div> -->
+  </div>
 </div>
+
+<ng-template #noSubjects>
+  <p class="empty-message">
+    No subjects available.
+  </p>
+</ng-template>
