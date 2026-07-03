@@ -84,7 +84,7 @@ export class EnrollmentForm {
       {
         width: '350px',
         data: {
-          message: 'Unassign this subject?'
+          message: 'Delete this enrollment?'
         }
       }
     );
