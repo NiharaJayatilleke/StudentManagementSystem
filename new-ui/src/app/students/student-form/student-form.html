@@ -1,0 +1,115 @@
+<div class="container form-container">
+
+    <h2>Add Student</h2>
+
+    <form [formGroup]="studentForm">
+
+        <input placeholder="Student ID" formControlName="studentId">
+
+        <div class = "validation-error" *ngIf="
+        studentForm.get('studentId')?.touched &&
+        studentForm.get('studentId')?.hasError('required')">
+
+            Student ID is required.
+        </div>
+ 
+<div
+    class="validation-error"
+    *ngIf="
+        studentForm.get('studentId')?.hasError('studentIdExists')">
+
+    Student ID already exists.
+
+</div>
+
+<div
+    class="validation-info"
+    *ngIf="
+        studentForm.get('studentId')?.pending">
+
+    Checking Student ID...
+
+</div>
+
+        <input placeholder="Name" formControlName="name">
+
+        <div class = "validation-error" *ngIf="
+        studentForm.get('name')?.touched &&
+        studentForm.get('name')?.invalid">
+
+            Name is required.
+        </div>
+
+        <input type="number" placeholder="Age" formControlName="age">
+
+        <div class = "validation-error" *ngIf="
+        studentForm.get('age')?.touched &&
+        studentForm.get('age')?.invalid">
+
+            Age must be between 18 and 100.
+        </div>
+
+        <input type="date" formControlName="dateOfBirth">
+
+        <div class = "validation-error" *ngIf="
+        studentForm.get('dateOfBirth')?.touched &&
+        studentForm.get('dateOfBirth')?.invalid">
+
+            <!-- Date of Birth is required. -->
+             Enter a valid date of birth.
+        </div>
+
+        <input placeholder="Address" formControlName="address">
+
+                <div class = "validation-error" *ngIf="
+        studentForm.get('address')?.touched &&
+        studentForm.get('address')?.invalid">
+
+            <!-- Address is required and must be at least 5 characters long. -->
+             Enter a valid address.
+        </div>
+
+        <button class="save-btn" (click)="addStudent()" [disabled]="studentForm.invalid">
+            Save
+        </button>
+    </form>
+</div>
+
+
+
+
+
+
+
+<!-- <div class="container">
+
+    <h2>Add Student</h2>
+
+    <input
+        placeholder="Student ID"
+        [(ngModel)]="student.studentId">
+
+    <input
+        placeholder="Name"
+        [(ngModel)]="student.name">
+
+    <input
+        type="number"
+        placeholder="Age"
+        [(ngModel)]="student.age">
+
+    <input
+        type="date"
+        [(ngModel)]="student.dateOfBirth">
+
+    <input
+        placeholder="Address"
+        [(ngModel)]="student.address">
+
+    <button
+        class="save-btn"
+        (click)="addStudent()">
+        Save
+    </button>
+
+</div> -->

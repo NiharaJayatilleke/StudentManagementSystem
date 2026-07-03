@@ -1,0 +1,29 @@
+<div class="container">
+
+    <h2>Students</h2>
+
+    <ul>
+        <li *ngFor="let student of students">
+
+            <span>
+                {{student.studentId}} -
+                {{student.name}}
+            </span>
+
+            <div class="action-buttons">
+                <button class="edit-btn" [routerLink]="['/students/edit', student.id]">
+
+                    <i class="fa-solid fa-pen-to-square"></i>
+
+                </button>
+
+                <button class="delete-btn" (click)="delete(student.id)">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+            </div>
+        </li>
+    </ul>
+
+</div>

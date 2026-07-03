@@ -1,0 +1,337 @@
+Yes. In fact, I'd recommend **converting your Edit form to use Reactive Forms as well**, just like your Add form. This gives you:
+
+* ✅ The same validation rules
+* ✅ Cleaner code
+* ✅ Consistent UI
+* ✅ Easier maintenance (one validation approach throughout the application)
+
+The only thing that differs between Add and Edit is:
+
+* **Add** starts with an empty form.
+* **Edit** loads the student and populates the form.
+
+---
+
+# Step 1: Replace `student` with a `FormGroup`
+
+Instead of
+
+```typescript
+student: any = {};
+```
+
+have
+
+```typescript
+studentForm: FormGroup;
+```
+
+---
+
+# Step 2: Update the imports
+
+Replace
+
+```typescript
+import { FormsModule } from '@angular/forms';
+```
+
+with
+
+```typescript
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  FormGroup,
+  Validators
+} from '@angular/forms';
+```
+
+and update the component imports:
+
+```typescript
+imports: [
+  ReactiveFormsModule,
+  CommonModule
+]
+```
+
+You can remove `FormsModule` because you'll no longer use `ngModel`.
+
+---
+
+# Step 3: Create the form
+
+In the constructor:
+
+```typescript
+constructor(
+  private fb: FormBuilder,
+  private route: ActivatedRoute,
+  private router: Router,
+  private studentService: StudentService,
+  private cdr: ChangeDetectorRef,
+  private notification: NotificationService
+) {
+
+  this.studentForm = this.fb.group({
+
+    studentId: [
+
+      '',
+      [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(10)
+      ]
+
+    ],
+
+    name: [
+
+      '',
+      [
+        Validators.required
+      ]
+
+    ],
+
+    age: [
+
+      null,
+      [
+        Validators.required,
+        Validators.min(18),
+        Validators.max(100)
+      ]
+
+    ],
+
+    dateOfBirth: [
+
+      '',
+      Validators.required
+
+    ],
+
+    address: [
+
+      '',
+      [
+        Validators.required,
+        Validators.minLength(5)
+      ]
+
+    ]
+  });
+}
+```
+
+---
+
+# Step 4: Populate the form
+
+Replace
+
+```typescript
+this.student = result;
+
+this.student.dateOfBirth =
+    this.student.dateOfBirth?.split('T')[0];
+```
+
+with
+
+```typescript
+this.studentForm.patchValue({
+
+  studentId: result.studentId,
+
+  name: result.name,
+
+  age: result.age,
+
+  dateOfBirth: result.dateOfBirth?.split('T')[0],
+
+  address: result.address
+
+});
+```
+
+Keep
+
+```typescript
+this.cdr.detectChanges();
+```
+
+---
+
+# Step 5: Save
+
+Replace
+
+```typescript
+this.studentService.update(
+    this.student.id,
+    this.student)
+```
+
+with
+
+```typescript
+this.studentService.update(
+
+    id,
+
+    this.studentForm.value
+
+)
+```
+
+or even better, store the id:
+
+```typescript
+studentDbId = 0;
+```
+
+When loading:
+
+```typescript
+this.studentDbId = result.id;
+```
+
+Then
+
+```typescript
+save() {
+
+  if (this.studentForm.invalid) {
+
+    this.studentForm.markAllAsTouched();
+
+    return;
+
+  }
+
+  this.studentService
+      .update(
+          this.studentDbId,
+          this.studentForm.value
+      )
+      .subscribe(() => {
+
+          this.notification.success(
+              'Student updated successfully');
+
+          this.router.navigate(
+              ['/students']);
+      });
+
+}
+```
+
+---
+
+# Step 6: Update the HTML
+
+Replace
+
+```html
+[(ngModel)]="student.studentId"
+```
+
+with
+
+```html
+<form [formGroup]="studentForm">
+
+<input
+    formControlName="studentId"
+    readonly>
+```
+
+Likewise:
+
+```html
+formControlName="name"
+
+formControlName="age"
+
+formControlName="dateOfBirth"
+
+formControlName="address"
+```
+
+Exactly like your Add form.
+
+---
+
+# Step 7: Validation messages
+
+You can literally copy the validation blocks from the Add form.
+
+Example:
+
+```html
+<div
+    class="validation-error"
+    *ngIf="
+        studentForm.get('name')?.touched &&
+        studentForm.get('name')?.invalid">
+
+    Name is required.
+
+</div>
+```
+
+Same for age, address, DOB, etc.
+
+---
+
+# Step 8: Disable Save
+
+```html
+<button
+    class="save-btn"
+    (click)="save()"
+    [disabled]="studentForm.invalid">
+
+    Update
+
+</button>
+```
+
+---
+
+# What about the Student ID validator?
+
+For the **Edit** page, **don't reuse the same async validator as-is**.
+
+Imagine you're editing student:
+
+```
+Student ID: ST001
+```
+
+The validator checks:
+
+```
+Does ST001 exist?
+```
+
+The answer is **yes**—because it's the current student.
+
+The form would incorrectly display:
+
+```
+❌ Student ID already exists
+```
+
+even if the user never changed the ID.
+
+There are two common solutions:
+
+1. **Make Student ID read-only** (your current approach). In that case, **omit the async validator** on the Edit form because the user cannot change the value anyway.
+2. If you later allow editing the Student ID, modify the backend endpoint to accept an `excludeId` query parameter (e.g. `GET /api/students/exists?studentId=ST001&excludeId=5`) and update the async validator to ignore the current record.
+
+Since your Student ID is already `readonly`, **option 1 is the simplest and most appropriate**. The edit form can reuse all the other validators while leaving out the uniqueness check.

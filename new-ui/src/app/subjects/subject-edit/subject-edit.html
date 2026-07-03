@@ -1,0 +1,30 @@
+<div class="container form-container">
+
+    <h2>Edit Subject</h2>
+
+    <div class="form-group">
+
+        <label for="subjectId">Subject ID</label>
+
+        <input
+            id="subjectId"
+            [(ngModel)]="subject.subjectId"
+            readonly>
+
+    </div>
+
+    <div class="form-group">
+
+        <label for="subjectName">Subject Name</label>
+
+        <input
+            id="subjectName"
+            [(ngModel)]="subject.subjectName">
+
+    </div>
+
+    <button class="save-btn" (click)="save()">
+        Update
+    </button>
+
+</div>

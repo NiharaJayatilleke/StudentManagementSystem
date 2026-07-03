@@ -1,0 +1,60 @@
+/* Dialog */
+
+:host {
+    display: block;
+    padding: 8px;
+}
+
+/* Title */
+
+.dialog-title {
+    color: #d32f2f;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+}
+
+.dialog-title i {
+    font-size: 24px;
+}
+
+/* Message */
+
+mat-dialog-content {
+
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    font-size: 15px;
+    color: #555;
+}
+
+/* Buttons */
+
+mat-dialog-actions {
+
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Cancel */
+
+.cancel-btn {
+
+    color: #555;
+}
+
+/* Delete */
+
+.confirm-btn {
+
+    background: #d32f2f !important;
+    color: white !important;
+}
+
+.confirm-btn:hover {
+
+    background: #b71c1c !important;
+}

@@ -1,0 +1,33 @@
+<div class="container form-container">
+
+    <h2>Register</h2>
+
+    <input [(ngModel)]="username" placeholder="Username">
+
+    <!-- <input
+        type="password"
+        [(ngModel)]="password"
+        placeholder="Password"> -->
+
+    <div class="password-container">
+
+        <input [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" placeholder="Password">
+
+        <button type="button" class="eye-btn" (click)="togglePassword()">
+
+            <i class="fa" [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword">
+            </i>
+
+        </button>
+
+    </div>
+
+    <button class="save-btn" (click)="register()">
+
+        Register
+
+    </button>
+
+    <p>Already have an account? <a routerLink="/login">Login</a></p>
+
+</div>

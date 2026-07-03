@@ -1,0 +1,42 @@
+<div class="container form-container">
+       <h2>Add Subject</h2>
+
+       <form [formGroup]="subjectForm">
+
+        <input placeholder="Subject ID" formControlName="subjectId">
+
+        <div class = "validation-error" *ngIf="
+        subjectForm.get('subjectId')?.touched &&
+        subjectForm.get('subjectId')?.invalid">
+
+            Subject ID is required.
+        </div>
+
+        <input placeholder="Subject Name" formControlName="subjectName">
+
+        <div class = "validation-error" *ngIf="
+        subjectForm.get('subjectName')?.touched &&
+        subjectForm.get('subjectName')?.invalid">
+
+            Name is required.
+        </div>
+
+        <button class="save-btn" (click)="addSubject()" [disabled]="subjectForm.invalid">
+            Save
+        </button>
+
+    </form>
+</div>
+
+
+<!-- <div class="container">
+       <h2>Add Subject</h2>
+
+       <input placeholder="Subject ID" [(ngModel)]="subject.subjectId" name="subjectId"><br>
+
+       <input placeholder="Subject Name" [(ngModel)]="subject.subjectName" name="subjectName"><br>
+
+       <button class="save-btn" (click)="addSubject()">
+              Save
+       </button>
+</div> -->

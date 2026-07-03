@@ -1,0 +1,38 @@
+<!-- <nav *ngIf="isLoggedIn()"> -->
+<nav>
+
+    <!-- <a routerLink="">
+        Students
+    </a><br> -->
+
+    <a routerLink="/students">
+        Students
+    </a>
+
+    <a routerLink="/students/add">
+        Add Student
+    </a>
+
+    <a routerLink="/subjects">
+        Subjects
+    </a>
+
+    <a routerLink="/subjects/add">
+        Add Subject
+    </a>
+
+    <a routerLink="/enrollments">
+        Enrollments
+    </a>
+
+    <button (click)="logout()">
+        Logout
+    </button>
+
+</nav>
+
+<!-- <hr> -->
+
+<app-loader></app-loader>
+
+<router-outlet></router-outlet>

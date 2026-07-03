@@ -1,0 +1,67 @@
+<div class="container">
+
+    <h2>Assign Subject</h2>
+
+    <select [(ngModel)]="studentId">
+
+        <option [ngValue]="null" disabled>
+            Select a Student
+        </option>
+
+        <option *ngFor="let s of students" [ngValue]="s.id">
+            {{s.name}}
+        </option>
+
+    </select>
+
+    <select [(ngModel)]="subjectId">
+
+        <option [ngValue]="null" disabled>
+            Select a Subject
+        </option>
+
+        <option *ngFor="let s of subjects" [ngValue]="s.id">
+
+            {{s.subjectName}}
+
+        </option>
+
+    </select>
+<!-- 
+    <mat-form-field appearance="outline">
+        <mat-label>Select a Student</mat-label>
+
+        <mat-select [(value)]="studentId">
+
+            <mat-option *ngFor="let s of students" [value]="s.id">
+                {{ s.name }}
+            </mat-option>
+
+        </mat-select>
+    </mat-form-field> -->
+
+    <button class="assign-btn" (click)="assign()" [disabled]="!studentId || !subjectId">
+        Assign
+    </button>
+
+    <hr>
+
+    <ul>
+
+        <li *ngFor="let enrollment of enrollments">
+
+            <span>
+                {{ enrollment.student.name }}
+                -
+                {{ enrollment.subject.subjectName }}
+            </span>
+
+            <button class="unassign-btn" (click)="unassign(enrollment.student.id, enrollment.subject.id)">
+                Unassign
+            </button>
+
+        </li>
+
+    </ul>
+
+</div>

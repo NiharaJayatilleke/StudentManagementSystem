@@ -1,0 +1,43 @@
+<div class="container form-container">
+
+    <h2>Edit Student</h2>
+
+    <form [formGroup]="studentForm">
+
+        <input placeholder="Student ID" formControlName="studentId" readonly>
+
+        <div class="validation-error" *ngIf="studentId?.touched && studentId?.hasError('required')">
+            Student ID is required.
+        </div>
+
+        <input placeholder="Name" formControlName="name">
+
+        <div class="validation-error" *ngIf="name?.touched && name?.invalid">
+            Name is required.
+        </div>
+
+        <input type="number" placeholder="Age" formControlName="age">
+
+        <div class="validation-error" *ngIf="age?.touched && age?.invalid">
+            Age must be between 18 and 100.
+        </div>
+
+        <input type="date" formControlName="dateOfBirth">
+
+        <div class="validation-error" *ngIf="dateOfBirth?.touched && dateOfBirth?.invalid">
+            Enter a valid date of birth.
+        </div>
+
+        <input placeholder="Address" formControlName="address">
+
+        <div class="validation-error" *ngIf="address?.touched && address?.invalid">
+            Enter a valid address.
+        </div>
+
+        <button class="save-btn" (click)="save()" [disabled]="studentForm.invalid">
+            Update
+        </button>
+
+    </form>
+
+</div>

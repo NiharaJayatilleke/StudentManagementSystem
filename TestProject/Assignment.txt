@@ -1,0 +1,37 @@
+Create a console application using .Net Core				
+Should store student name, Id, age, DoB, Address in an internal data structure				
+Should store subject name, subject Id in an internal data structure 				
+Should be able to assign student to a subject and store in an internal data structure 				
+				
+Design consideration				
+Use clean architecture				
+Dependency injection				
+You will be adding more functionalities to this later. So do layered separation				
+Code reusability				
+SOLID principles				
+
+---
+
+Add repository layer to the application developed in Exercise 1					
+Create a database					
+Create required tables and store the students, subjects and student subject assignment to the table					
+					
+Design considerations					
+Ef Core code first approach					
+Design patterns					
+Data migrations					
+
+---
+
+Add a Web API layer to the app develop							
+Create web Api endpoints to Add/Edit/Delete Students, Add/Edit/Delete subjects and Assign/Unassign subjects to students							
+							
+Design considerations							
+API security							
+Correct use of HTTP Request type							
+							
+---
+
+Add Angular front end to the application		
+Call backend APIs		
+Secure the API Calls		

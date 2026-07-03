@@ -1,0 +1,425 @@
+/* =========================
+   Global
+========================= */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* =========================
+   Containers
+========================= */
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   Headings
+========================= */
+
+h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+/* =========================
+   Forms
+========================= */
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+/* =========================
+   Validation
+========================= */
+
+.validation-error {
+    color: #dc3545;
+    font-size: 0.75rem;
+    margin-top: -6px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+    border-color: #dc3545;
+}
+
+input.ng-valid.ng-touched,
+select.ng-valid.ng-touched {
+    border-color: #28a745;
+}
+
+/* =========================
+   Buttons
+========================= */
+
+button {
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* =========================
+   Save / Assign Buttons
+========================= */
+
+.save-btn,
+.assign-btn {
+    background: #3498db;
+    color: white;
+    padding: 12px 18px;
+}
+
+/* .save-btn,
+.assign-btn {
+    background: #3485bb;
+    color: white;
+    padding: 12px 18px;
+} */
+
+.save-btn:hover,
+.assign-btn:hover {
+    background: #2980b9;
+}
+
+.save-btn:disabled,
+.assign-btn:disabled {
+    background: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* .unassign-btn {
+    background: #76848d;
+    color: white;
+    padding: 8px 12px;
+}
+
+.unassign-btn:hover {
+    background: rgb(89, 99, 105);
+} */
+
+.unassign-btn {
+    background: #e45b51fb;
+    color: white;
+    padding: 8px 12px;
+}
+
+.unassign-btn:hover {
+    background:#cf3f35fb;
+}
+
+/* =========================
+   Icon Buttons
+========================= */
+
+.edit-btn,
+.delete-btn {
+    width: 25px;
+    height: 25px;
+    padding: 3px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+}
+
+.edit-btn {
+    background: #95a5a6;
+    color: white;
+}
+
+.edit-btn:hover {
+    background: #7f8c8d;
+}
+
+.delete-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #c0392b;
+}
+
+.edit-btn i,
+.delete-btn i {
+    font-size: 12px;
+}
+
+/* =========================
+   Lists
+========================= */
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    background: white;
+    border: 1px solid #ececec;
+    border-radius: 8px;
+
+    padding: 14px 18px;
+    margin-bottom: 10px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+li > span,
+li > div {
+    display: flex;
+    align-items: center;
+}
+
+li > span {
+    flex: 1;
+}
+
+/* Button container inside list item */
+
+li div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* =========================
+   Navigation
+========================= */
+
+nav {
+    background: #2c3e50;
+    padding: 15px 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #3498db;
+}
+
+nav button {
+    margin-left: auto;
+    background: #e74c3c;
+    color: white;
+    padding: 8px 14px;
+}
+
+nav button:hover {
+    background: #c0392b;
+}
+
+/* =========================
+   Login / Register Forms
+========================= */
+
+.form-container {
+    max-width: 400px;
+    width: min(90%, 400px);
+    margin: 60px auto;
+}
+
+.auth-container button {
+    width: 100%;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 768px) {
+
+    .container {
+        margin: 15px;
+        padding: 20px;
+    }
+
+    li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    li div {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    nav {
+        flex-wrap: wrap;
+    }
+}
+
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 45px; /* room for icon */
+}
+
+.eye-btn {
+    position: absolute;
+
+    right: 12px;
+    top: 40%;
+
+    transform: translateY(-50%);
+
+    background: transparent;
+    border: none;
+
+    padding: 0;
+    margin: 0;
+
+    cursor: pointer;
+
+    color: #666;
+}
+
+.eye-btn:hover {
+    color: #3498db;
+}
+
+/* Snackbar Styles */
+
+.mat-mdc-snack-bar-container.success-snackbar {
+    --mdc-snackbar-container-color: #4CAF50 !important;
+    --mdc-snackbar-supporting-text-color: #ffffff !important;
+    --mat-snack-bar-button-color: #ffffff !important;
+}
+
+.mat-mdc-snack-bar-container.success-snackbar .mdc-snackbar__surface {
+    background-color: #4ba74e !important;
+    color: #ffffff !important;
+}
+
+.mat-mdc-snack-bar-container.error-snackbar {
+    --mdc-snackbar-container-color: #F44336 !important;
+    --mdc-snackbar-supporting-text-color: #ffffff !important;
+    --mat-snack-bar-button-color: #ffffff !important;
+}
+
+.mat-mdc-snack-bar-container.error-snackbar .mdc-snackbar__surface {
+    background-color: #e45b51fb !important;
+    color: #ffffff !important;
+}
+
+.mat-mdc-snack-bar-container.warning-snackbar {
+    --mdc-snackbar-container-color: #FF9800 !important;
+    --mdc-snackbar-supporting-text-color: #ffffff !important;
+    --mat-snack-bar-button-color: #ffffff !important;
+}
+
+.mat-mdc-snack-bar-container.warning-snackbar .mdc-snackbar__surface {
+    background-color: #FF9800 !important;
+    color: #ffffff !important;
+}
+
+.mat-mdc-snack-bar-container.info-snackbar {
+    --mdc-snackbar-container-color: #2196F3 !important;
+    --mdc-snackbar-supporting-text-color: #ffffff !important;
+    --mat-snack-bar-button-color: #ffffff !important;
+}
+
+.mat-mdc-snack-bar-container.info-snackbar .mdc-snackbar__surface {
+    background-color: #2196F3 !important;
+    color: #ffffff !important;
+}
+
+
+/* .danger-dialog .mat-mdc-dialog-surface {
+
+    border-top: 5px solid #d32f2f;
+    border-radius: 12px;
+} */
+
+
+
+
+input[readonly] {
+    background-color: #f5f5f5;
+    color: #666;
+    cursor: not-allowed;
+}
+
+/* Form Group Styles */
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 500;
+    color: #2c3e50;
+    font-size: 13px;
+}
+
+
+.validation-info {
+
+    color: #3498db;
+    font-size: 12px;
+    margin-top: 5px;
+}
